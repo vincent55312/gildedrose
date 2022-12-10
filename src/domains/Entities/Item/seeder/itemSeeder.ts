@@ -13,10 +13,7 @@ export function generateRandomItems(number: number): Item[] {
     const items: Item[] = [];
 
     for (let i = 0; i < number; i++) {
-        // Générer un nom aléatoire en utilisant une partie du tableau de graines ci-dessus
         const name = ITEM_SEEDS[Math.floor(Math.random() * ITEM_SEEDS.length)].name;
-
-        // Générer des valeurs aléatoires pour les propriétés sellIn et quality
         const sellIn = Math.floor(Math.random() * 30);
         const quality = Math.floor(Math.random() * 50);
 
