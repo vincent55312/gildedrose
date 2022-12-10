@@ -23,6 +23,7 @@ export class Shop {
             this.itemUpdater.updateQualityForConjuredItem(this.items[i]);
             this.updateValue(this.items[i]);
             this.updateSale(this.items[i]);
+            console.log(this.items.toString());
         }
 
         this.updateInventory();
@@ -30,22 +31,18 @@ export class Shop {
         return this.items;
     }
 
-    // Fonction pour mettre à jour la valeur d'un produit
     private updateValue(item: Item): void {
         // TODO: implémenter la logique pour mettre à jour la valeur d'un produit
     }
 
-    // Fonction pour mettre à jour la vente d'un article
     private updateSale(item: Item): void {
         // TODO: implémenter la logique pour mettre à jour la vente d'un article
     }
 
-    // Fonction pour mettre à jour l'inventaire
     private updateInventory(): void {
         // TODO: implémenter la logique pour mettre à jour l'inventaire
     }
 
-    // Fonction pour vendre un produit
     public sellItem(type: string, quality: number): void {
         // TODO: implémenter la logique pour vendre un produit
     }

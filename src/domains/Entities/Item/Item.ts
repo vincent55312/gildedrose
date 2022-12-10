@@ -14,7 +14,7 @@ export abstract class Item {
     }
 
     public toString(): string {
-        return `${this.name}, ${this.sellIn}, ${this.quality}`;
+        return `${this.name}, ${this.sellIn}, ${this.quality}, ${this.basePrice}`;
     }
 
     public update(item: Item): void {
