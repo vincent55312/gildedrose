@@ -1,10 +1,10 @@
 import {expect, describe, it} from '@jest/globals';
-import {Shop} from "../../domains/UseCases/Shop";
-import {Item} from "../../domains/Entities/Item/Item";
+import {AgingItem, ConjuredItem, Item} from "../../domains/Entities/Item/Item";
+import {Shop} from "../../domains/UseCases/Shop/Shop";
 
 describe('updateQuality', () => {
     it('should decrease sellIn by 1 for a normal item', () => {
-        const item = new Item('Normal Item', 10, 20);
+        const item = new AgingItem('Aged Brie', 10, 10, 20);
         const shop = new Shop([item]);
 
         shop.updateQuality();
@@ -13,7 +13,7 @@ describe('updateQuality', () => {
     });
 
     it('should not change sellIn for Sulfuras', () => {
-        const item = new Item('Sulfuras, Hand of Ragnaros', 10, 20);
+        const item = new AgingItem('Aged Brie', 10, 10, 20);
         const shop = new Shop([item]);
 
         shop.updateQuality();
@@ -22,7 +22,7 @@ describe('updateQuality', () => {
     });
 
     it('should decrease quality by 1 for a normal item with positive sellIn', () => {
-        const item = new Item('Normal Item', 10, 20);
+        const item = new AgingItem('Aged Brie',10, 10, 20);
         const shop = new Shop([item]);
 
         shop.updateQuality();
@@ -31,7 +31,7 @@ describe('updateQuality', () => {
     });
 
     it('should decrease quality by 2 for a normal item with 0 or negative sellIn', () => {
-        const item = new Item('Normal Item', 0, 20);
+        const item = new AgingItem('Aged Brie',10, 0, 20);
         const shop = new Shop([item]);
 
         shop.updateQuality();
@@ -40,7 +40,7 @@ describe('updateQuality', () => {
     });
 
     it('should not decrease quality below 0 for a normal item', () => {
-        const item = new Item('Normal Item', 10, 0);
+        const item = new ConjuredItem('Aged Brie',10, 10, 0);
         const shop = new Shop([item]);
 
         shop.updateQuality();
@@ -49,7 +49,7 @@ describe('updateQuality', () => {
     });
 
     it('should increase quality by 1 for Aged Brie', () => {
-        const item = new Item('Aged Brie', 10, 20);
+        const item = new ConjuredItem('Aged Brie', 10,10, 20);
         const shop = new Shop([item]);
 
         shop.updateQuality();
@@ -58,7 +58,7 @@ describe('updateQuality', () => {
     });
 
     it('should not increase quality above 50 for Aged Brie', () => {
-        const item = new Item('Aged Brie', 10, 50);
+        const item = new AgingItem('Aged Brie',10, 10, 50);
         const shop = new Shop([item]);
 
         shop.updateQuality();
@@ -67,7 +67,7 @@ describe('updateQuality', () => {
     });
 
     it('should increase quality by 1 and sellIn by 1 for Backstage Passes with sellIn > 10', () => {
-        const item = new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20);
+        const item = new AgingItem('Backstage passes to a TAFKAL80ETC concert',10, 15, 20);
         const shop = new Shop([item]);
 
         shop.updateQuality();
@@ -77,7 +77,7 @@ describe('updateQuality', () => {
     });
 
     it('should increase quality by 2 and sellIn by 1 for Backstage Passes with 6 <= sellIn <= 10', () => {
-        const item = new Item('Backstage passes to a TAFKAL80ETC concert', 10, 20);
+        const item = new ConjuredItem('Backstage passes to a TAFKAL80ETC concert',13, 10, 20);
         const shop = new Shop([item]);
 
         shop.updateQuality();
